@@ -1,4 +1,4 @@
-## Basic API for college programs management
+## Basic Stripe payment form generator
 
 ### Stack:
 + Python 3.10
