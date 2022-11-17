@@ -4,6 +4,7 @@
 + Python 3.10
 + Django/DRF
 + Stripe
++ PostgreSQL
 
 **Linter check**:
 
