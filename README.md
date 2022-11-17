@@ -8,4 +8,4 @@
 
 **Linter check**:
 
-[![linter](https://github.com/Polyrom/stripe_payment_test/actions/workflows/linter.yml/badge.svg)](https://github.com/Polyrom/stripe_payment_test/actions/workflows/linter.yml)
+[![flake8](https://github.com/Polyrom/stripe_payment_test/actions/workflows/flake8.yml/badge.svg)](https://github.com/Polyrom/stripe_payment_test/actions/workflows/flake8.yml)
