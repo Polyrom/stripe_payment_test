@@ -1,10 +1,10 @@
 ## Basic Stripe payment form generator
 
-### Stack:
+ **Stack**:
 + Python 3.10
-+ Django/DRF
-+ Stripe
++ Django
 + PostgreSQL
++ Stripe
 
 **Linter check**:
 
