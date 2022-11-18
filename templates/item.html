@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Buy {{item.name}}</title>
@@ -5,9 +6,16 @@
   <body>
     <h1>{{item.name}}</h1>
     <p>{{item.description}}</p>
-    <p>{{item.price}}</p>
-    <form action="/create-checkout-session" method="POST">
-      <button type="submit">Buy</button>
-    </form>
+    <p>{{item.get_price}}</p>
+    <button id="buy-button">Buy</button>
+  <script type="text/javascript">
+    var stripe = Stripe("{{ STRIPE_PUBLISHABLE_KEY }}");
+    var buyButton = document.getElementById("buy-button");
+    buyButton.addEventListener("click", function() {
+        fetch({% url "buy_item" pk=item.pk %}, {method: "GET"})
+        .then(response => return response.json())
+        .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
+      });
+  </script>
   </body>
 </html>
