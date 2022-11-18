@@ -1,11 +1,24 @@
 from django.shortcuts import redirect
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.http import JsonResponse
 import stripe
 
 from .models import Item
 from config import settings
+
+
+stripe.api_key = settings.STRIPE_PRIVATE_KEY
+
+
+class ItemsListView(ListView):
+    model = Item
+    template_name = 'items_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = Item.objects.all()
+        return context
 
 
 class ItemView(TemplateView):
@@ -16,9 +29,6 @@ class ItemView(TemplateView):
         context['item'] = Item.objects.get(pk=kwargs['pk'])
         context['STRIPE_PUBLISHABLE_KEY'] = settings.STRIPE_PUBLISHABLE_KEY
         return context
-
-
-stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
 
 class BuyView(View):
