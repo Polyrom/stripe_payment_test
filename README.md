@@ -8,6 +8,10 @@
 
 **Basic usage**
 
+Returns a basic HTML page with a table of available items:
+
+`curl -X GET hostname/`
+
 Returns a basic HTML page with short item description and a "Buy" button:
 
 `curl -X GET hostname/item/<itemnumber>/`
