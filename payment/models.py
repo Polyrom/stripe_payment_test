@@ -6,8 +6,5 @@ class Item(models.Model):
     description = models.TextField(max_length=2000, blank=True)
     price = models.IntegerField(default=0)
 
-    def get_price(self):
-        return '{:.2f}'.format(self.price / 100)
-
     def __str__(self):
         return self.name

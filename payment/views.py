@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.views import View
 from django.views.generic import TemplateView
 from django.http import JsonResponse
@@ -22,25 +23,33 @@ stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
 class BuyView(View):
 
-    def get(self, request, *args, **kwargs):
+    def _generate_session(self, request, *args, **kwargs):
         item_id = kwargs['pk']
         item = Item.objects.get(id=item_id)
-        checkout_session = stripe.checkout.Session.create(
-                    line_items=[
-                        {
-                            'price_data': {
-                                'currency': 'usd',
-                                'unit_amount_decimal': item.get_price(),
-                                'product_data': {
-                                    'name': item.name,
-                                    'description': item.description
-                                },
-                            },
-                            'quantity': 1,
+        session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'usd',
+                        'unit_amount': item.price,
+                        'product_data': {
+                            'name': item.name,
+                            'description': item.description
                         },
-                    ],
-                    mode='payment',
-                    success_url=settings.RANDOM_TEST_URL,
-                    cancel_url=settings.RANDOM_TEST_URL,
-                )
-        return JsonResponse({'id': checkout_session.id})
+                    },
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url=settings.RANDOM_TEST_URL,
+            cancel_url=settings.RANDOM_TEST_URL,
+        )
+        return session
+
+    def get(self, request, *args, **kwargs):
+        session = self._generate_session(self, request, *args, **kwargs)
+        return JsonResponse({'id': session.id})
+
+    def post(self, request, *args, **kwargs):
+        session = self._generate_session(self, request, *args, **kwargs)
+        return redirect(session.url, code=303)
