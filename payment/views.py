@@ -2,10 +2,11 @@ from django.shortcuts import redirect
 from django.views import View
 from django.views.generic import TemplateView, ListView
 from django.http import JsonResponse
+from django.conf import settings
 import stripe
 
+from .mixins import CheckoutSessionMixin
 from .models import Item
-from config import settings
 
 
 stripe.api_key = settings.STRIPE_PRIVATE_KEY
@@ -26,30 +27,7 @@ class ItemView(TemplateView):
         return context
 
 
-class BuyView(View):
-
-    def _generate_session(self, request, *args, **kwargs):
-        item_id = kwargs['pk']
-        item = Item.objects.get(id=item_id)
-        session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    'price_data': {
-                        'currency': 'usd',
-                        'unit_amount': item.price,
-                        'product_data': {
-                            'name': item.name,
-                            'description': item.description
-                        },
-                    },
-                    'quantity': 1,
-                },
-            ],
-            mode='payment',
-            success_url=settings.RANDOM_TEST_URL,
-            cancel_url=settings.RANDOM_TEST_URL,
-        )
-        return session
+class BuyView(CheckoutSessionMixin, View):
 
     def get(self, request, *args, **kwargs):
         session = self._generate_session(self, request, *args, **kwargs)
