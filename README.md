@@ -1,26 +1,25 @@
-## Basic Django app with configured payment via Stripe API
+## Basic Django E-commerce app with configured Stripe payment
 
  **Stack**:
 + Python 3.10
 + Django 4.1
 + PostgreSQL
 + Stripe
++ Bootstrap 4
 
-**Basic usage**
+You are free to browse this basic E-Commerce web app, "buying" items
+right off the item detail page or by adding any number of items to cart to check out with a few of them.
+Upon pressing on "Buy" or "Checkout" buttons you are redirected to a dummy Stripe checkout page.
 
-Returns a basic HTML page with a table of available items:
-
-`curl -X GET hostname/`
-
-Returns a basic HTML page with short item description and a "Buy" button:
-
-`curl -X GET hostname/item/<itemnumber>/`
-
-Upon pressing "Buy" button you are redirected to a test checkout page powered by Stripe
+**Extra methods**
 
 Returns Stripe checkout session ID associated with the chosen item:
 
-`curl -X GET hostname/buy/<itemnumber>/`
+`curl -X GET hostname/buy/<item number>/`
+
+Returns Stripe checkout session ID associated with the chosen order:
+
+`curl -X GET hostname/checkout/<order number>/`
 
 **Linter check**:
 
