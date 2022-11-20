@@ -1,6 +1,5 @@
 from django.conf import settings
 import stripe
-from django.urls import reverse_lazy, reverse
 
 from payment.models import Item, Order
 

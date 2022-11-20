@@ -117,11 +117,3 @@ class CheckoutView(OrderCheckoutSessionMixin, View):
     def post(self, request, *args, **kwargs):
         session = self._generate_session(self, request, *args, **kwargs)
         return redirect(session.url, code=303)
-
-
-class CheckoutSuccessfulView(TemplateView):
-    template_name = 'stripe/success.html'
-
-
-class CheckoutCancelledView(TemplateView):
-    template_name = 'stripe/cancel.html'
