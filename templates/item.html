@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Buy {{item.name}}</title>
-    <script src="https://js.stripe.com/v3"></script>
-  </head>
-  <body>
-    <h1>{{item.name}}</h1>
-    <p>{{item.description}}</p>
-    <p>{{item.get_price}}</p>
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">{{item.name}}</h5>
+    <p class="card-text">{{item.description}}</p>
+    <p class="card-text">{{item.get_price}}</p>
     <form action="{% url 'buy_item' pk=item.pk %}" method="POST">{%csrf_token%}
-      <button type="submit">Buy</button>
+      <button type="submit" class="btn btn-primary my-1">Buy</button>
     </form>
-  </body>
-</html>
+    <a class="btn btn-primary" href="{% url 'add-to-cart' pk=item.pk %}">Add to cart</a>
+  </div>
+</div>
+
+{% endblock %}

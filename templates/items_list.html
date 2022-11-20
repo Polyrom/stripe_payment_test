@@ -1,28 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Items</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in object_list %}
-        <tr>
-            <td>{{ item.id }}</td>
-            <td><a href="{% url 'retrieve_item' pk=item.pk %}">{{ item.name }}</a></td>
-            <td>{{ item.get_price }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h3 class="my-5">Products</h3>
+    <div class="row">
+    {% for item in object_list %}
+        <div class="col-auto mb-3">
+            <div class="card mb-4" style="min-width: 18rem; max-width: 18rem;">
+                <div class="card-body">
+                    <a class="h5" href="{% url 'retrieve_item' pk=item.pk %}">{{ item.name }}</a>
+                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text">{{ item.get_price }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

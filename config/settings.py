@@ -7,6 +7,8 @@ import os
 import environ
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -27,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap4',
+    'users',
     'payment'
 ]
 
@@ -112,5 +116,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_PUBLISHABLE_KEY = env('STRIPE_PUBLISHABLE_KEY')
 STRIPE_PRIVATE_KEY = env('STRIPE_PRIVATE_KEY')
 
-# Random url to stub success/cancels urls in Stripe
-RANDOM_TEST_URL = 'https://example.com'
+# Dummy Success/cancel urls for Stripe
+DUMMY_URL = "https://example.com"
+
+# custom user model
+AUTH_USER_MODEL = 'users.Customer'
+
+# custom login/logout redirect
+LOGIN_REDIRECT_URL = 'items_list'
+LOGOUT_REDIRECT_URL = 'items_list'
