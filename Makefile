@@ -5,7 +5,7 @@ install:
 	poetry install
 
 docker-install:
-	docker build .
+	docker build -t stripe_payment_test .
 
 start:
 	poetry run python manage.py runserver
