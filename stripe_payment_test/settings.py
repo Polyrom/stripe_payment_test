@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
     env('ALLOWED_HOSTS')
@@ -123,5 +123,6 @@ DUMMY_URL = "https://example.com"
 AUTH_USER_MODEL = 'users.Customer'
 
 # custom login/logout redirect
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'items_list'
 LOGOUT_REDIRECT_URL = 'items_list'

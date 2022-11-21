@@ -5,6 +5,7 @@ from django.views import View
 from django.views.generic import TemplateView, ListView
 from django.http import JsonResponse
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 import stripe
 
 from .mixins import ItemCheckoutSessionMixin, OrderCheckoutSessionMixin
@@ -40,7 +41,7 @@ class BuyView(ItemCheckoutSessionMixin, View):
         session = self._generate_session(self, request, *args, **kwargs)
         return redirect(session.url, code=303)
 
-
+@login_required
 def add_to_cart(request, **kwargs):
     item_pk = kwargs['pk']
     item = get_object_or_404(Item, pk=item_pk)
