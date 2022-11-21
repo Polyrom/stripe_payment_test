@@ -69,14 +69,7 @@ WSGI_APPLICATION = 'stripe_payment_test.wsgi.application'
 # Database
 
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': env('DATABASE_NAME'),
-       'USER': env('DATABASE_USER'),
-       'PASSWORD': env('DATABASE_PASS'),
-       'HOST': env('HOST'),
-       'PORT': '',
-   }
+   'default': {}
 }
 
 db_from_env = dj_database_url.config(conn_max_age=600)
