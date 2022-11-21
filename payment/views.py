@@ -41,6 +41,7 @@ class BuyView(ItemCheckoutSessionMixin, View):
         session = self._generate_session(self, request, *args, **kwargs)
         return redirect(session.url, code=303)
 
+
 @login_required
 def add_to_cart(request, **kwargs):
     item_pk = kwargs['pk']
