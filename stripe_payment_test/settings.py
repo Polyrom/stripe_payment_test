@@ -19,7 +19,9 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
-    env('ALLOWED_HOSTS')
+    '127.0.0.1',
+    '0.0.0.0:$PORT',
+    '0.0.0.0',
 ]
 
 # Application definition

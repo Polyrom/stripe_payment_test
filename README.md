@@ -35,7 +35,6 @@ touch .env
 Populate the .env file with the following values:
 ```
 DEBUG=True
-ALLOWED_HOSTS=127.0.0.1
 SECRET_KEY=your_Django_secret_key (may be generated with 'make secretkey' command)
 DATABASE_URL=your_database_url or configure basic SQLite in Django settings
 STRIPE_SECRET_KEY=may be obtained from your Stripe account
