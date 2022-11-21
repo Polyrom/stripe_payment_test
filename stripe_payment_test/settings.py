@@ -48,6 +48,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'stripe_payment_test.urls'
 
+CSRF_TRUSTED_ORIGINS = ['https://stripepaymenttest-production.up.railway.app']
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
