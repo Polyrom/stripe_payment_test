@@ -1,5 +1,5 @@
 """
-Django settings for config project.
+Django settings for stripe_payment_test project.
 
 """
 
@@ -18,7 +18,9 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    env('ALLOWED_HOSTS')
+]
 
 # Application definition
 
@@ -44,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'stripe_payment_test.urls'
 
 TEMPLATES = [
     {
@@ -62,7 +64,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'stripe_payment_test.wsgi.application'
 
 # Database
 

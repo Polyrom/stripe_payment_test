@@ -17,6 +17,7 @@ stripe.api_key = settings.STRIPE_PRIVATE_KEY
 class ItemsListView(ListView):
     model = Item
     template_name = 'items_list.html'
+    context_object_name = 'items'
 
 
 class ItemView(TemplateView):

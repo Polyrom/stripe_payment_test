@@ -14,4 +14,4 @@ migrate:
 	poetry run python manage.py migrate
 
 lint:
-	poetry run flake8 config payment users
+	poetry run flake8 stripe_payment_test payment users payment users
