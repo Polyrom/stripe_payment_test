@@ -3,7 +3,7 @@
  **Stack**:
 + Python 3.10
 + Django 4.1
-+ PostgreSQL
++ SQLite (Dev) / PostgreSQL (Prod)
 + Stripe
 + Bootstrap 4
 
@@ -35,8 +35,8 @@ touch .env
 Populate the .env file with the following values:
 ```
 DEBUG=True
+DB_ENGINE=SQLite
 SECRET_KEY=your_Django_secret_key (may be generated with 'make secretkey' command)
-DATABASE_URL=your_database_url or configure basic SQLite in Django settings
 STRIPE_SECRET_KEY=may be obtained from your Stripe account
 STRIPE_PUBLISHABLE_KEY=may be obtained from your Stripe account
 ```
