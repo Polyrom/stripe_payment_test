@@ -7,10 +7,10 @@
 + Stripe
 + Bootstrap 4
 
-###Click here to visit the page:
+### Click here to visit the page:
 ### [Demo on Railway](https://stripepaymenttest-production.up.railway.app/)
 
-##Description
+## Description
 You are free to browse this basic E-Commerce web app, "buying" items
 right off the item detail page or by adding any number of items to cart to check out with a few of them.
 Upon pressing on "Buy" or "Checkout" buttons you are redirected to a dummy Stripe checkout page.
