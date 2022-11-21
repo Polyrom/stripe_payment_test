@@ -58,13 +58,13 @@ You can "buy" single items without signing up, but adding/checking out from cart
 Returns Stripe checkout session ID associated with the chosen item:
 
 ```
-curl -X GET hostname/buy/<item_number>/
+curl -X GET <hostname>/buy/<item_number>/
 ```
 
 Returns Stripe checkout session ID associated with the chosen order:
 
 ```
-curl -X GET hostname/checkout/<order_number>/
+curl -X GET <hostname>/checkout/<order_number>/
 ```
 
 **Linter check**:
