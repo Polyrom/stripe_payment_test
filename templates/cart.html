@@ -21,7 +21,7 @@
             <td>{{ item.quantity }}</td>
             <td>{{ item.get_total }}</td>
             <td>
-              <a class="btn btn-secondary" href="{% url 'remove-from-cart' pk=item.item.pk %}">Remove</a>
+              <a class="btn btn-danger" href="{% url 'remove-from-cart' pk=item.item.pk %}">Remove from cart</a>
             </td>
         </tr>
         {% endfor %}
@@ -29,6 +29,7 @@
     </table>
 <h5>Total: {{ order.get_template_total }}</h5>
 <form action="{% url 'checkout' pk=order.pk %}" method="POST">{%csrf_token%}
-    <button type="submit" class="btn btn-primary">Checkout</button>
+    <button type="submit" class="btn btn-success">Checkout</button>
 </form>
+<a class="btn btn-primary my-2" href="{% url 'items_list' %}">Continue shopping</a>
 {% endblock %}
