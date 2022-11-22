@@ -1,3 +1,4 @@
+[![flake8](https://github.com/Polyrom/stripe_payment_test/actions/workflows/flake8.yml/badge.svg)](https://github.com/Polyrom/stripe_payment_test/actions/workflows/flake8.yml)
 ## Basic Django E-commerce app with configured Stripe payment
 
  **Stack**:
@@ -69,7 +70,3 @@ Returns Stripe checkout session ID associated with the chosen order:
 ```
 curl -X GET <hostname>/checkout/<order_number>/
 ```
-
-**Linter check**:
-
-[![flake8](https://github.com/Polyrom/stripe_payment_test/actions/workflows/flake8.yml/badge.svg)](https://github.com/Polyrom/stripe_payment_test/actions/workflows/flake8.yml)
