@@ -22,8 +22,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '0.0.0.0:$PORT',
     '0.0.0.0',
-    'stripepaymenttest-production.up.railway.app',
-    'django-stripe.onrender.com'
+    'stripepaymenttest-production.up.railway.app'
 ]
 
 # Application definition
