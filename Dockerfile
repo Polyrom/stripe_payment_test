@@ -14,4 +14,4 @@ RUN poetry install
 
 COPY . .
 
-CMD ["bash", "-c", "poetry run gunicorn stripe_payment_test.wsgi --log-file -"]
+CMD ["bash", "-c", "poetry run python manage.py migrate", "poetry run gunicorn stripe_payment_test.wsgi --log-file -"]
