@@ -11,22 +11,25 @@
 ### [Demo on Railway](https://stripepaymenttest-production.up.railway.app/)
 
 ## Installation
-Clone the repository
+1. Clone the repository
 ```
 git clone https://github.com/Polyrom/stripe_payment_test
 cd stripe_payment_test
 ```
-Install dependencies with **Poetry**
+2. Install dependencies with **Poetry**
+
+    2.1. If you don't have Poetry, here's the installation guide:
+         **[Poetry installation](https://python-poetry.org/docs/)**
 ```
 make install
 ```
 
-Create an .env file
+3. Create an .env file
 ```
 cd stripe_payment_test
 touch .env
 ```
-Populate the .env file with the following values:
+4. Populate the .env file with the following values:
 ```
 DEBUG=True
 DATABASE_URL=<your db url> or you can configure settings back to default SQlite
@@ -35,13 +38,13 @@ STRIPE_SECRET_KEY=may be obtained from your Stripe account
 STRIPE_PUBLISHABLE_KEY=may be obtained from your Stripe account
 ```
 
-Finish installation **from the project's root directory**
+5. Finish installation **from the project's root directory**
 ```
 make makemigrations
 make migrate
 make createsuperuser
 ```
-Now can run the app on you localhost
+6. Now can run the app on you localhost
 ```
 make start
 ```
