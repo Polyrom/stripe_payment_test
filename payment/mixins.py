@@ -6,7 +6,7 @@ from payment.models import Item, Order
 
 class ItemCheckoutSessionMixin:
 
-    def _generate_session(self, request, *args, **kwargs):
+    def generate_session(self, request, *args, **kwargs):
         item_id = kwargs['pk']
         item = Item.objects.get(id=item_id)
         session = stripe.checkout.Session.create(
@@ -32,7 +32,7 @@ class ItemCheckoutSessionMixin:
 
 class OrderCheckoutSessionMixin:
 
-    def _generate_session(self, request, *args, **kwargs):
+    def generate_session(self, request, *args, **kwargs):
         order_id = kwargs['pk']
         order = Order.objects.get(id=order_id)
         session = stripe.checkout.Session.create(

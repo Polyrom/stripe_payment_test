@@ -31,14 +31,43 @@ class ItemView(TemplateView):
         return context
 
 
+class OrderView(ListView):
+    model = Order
+    template_name = 'cart.html'
+    context_object_name = 'order'
+    redirect_field_name = ''
+
+    def get_queryset(self):
+        order_qs = Order.objects.filter(user=self.request.user, ordered=False)
+        if order_qs.exists():
+            return order_qs[0]
+        return order_qs
+
+    def get_context_data(self, **kwargs):
+        context = super(OrderView, self).get_context_data(**kwargs)
+        context['STRIPE_PUBLISHABLE_KEY'] = settings.STRIPE_PUBLISHABLE_KEY
+        return context
+
+
 class BuyView(ItemCheckoutSessionMixin, View):
 
     def get(self, request, *args, **kwargs):
-        session = self._generate_session(self, request, *args, **kwargs)
+        session = self.generate_session(self, request, *args, **kwargs)
         return JsonResponse({'id': session.id})
 
     def post(self, request, *args, **kwargs):
-        session = self._generate_session(self, request, *args, **kwargs)
+        session = self.generate_session(self, request, *args, **kwargs)
+        return redirect(session.url, code=303)
+
+
+class CheckoutView(OrderCheckoutSessionMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        session = self.generate_session(self, request, *args, **kwargs)
+        return JsonResponse({'id': session.id})
+
+    def post(self, request, *args, **kwargs):
+        session = self.generate_session(self, request, *args, **kwargs)
         return redirect(session.url, code=303)
 
 
@@ -91,32 +120,3 @@ def remove_from_cart(request, **kwargs):
             order_item.delete()
             messages.info(request, "This item was removed from your cart.")
             return redirect(reverse('cart'))
-
-
-class OrderView(ListView):
-    model = Order
-    template_name = 'cart.html'
-    context_object_name = 'order'
-    redirect_field_name = ''
-
-    def get_queryset(self):
-        order_qs = Order.objects.filter(user=self.request.user, ordered=False)
-        if order_qs.exists():
-            return order_qs[0]
-        return order_qs
-
-    def get_context_data(self, **kwargs):
-        context = super(OrderView, self).get_context_data(**kwargs)
-        context['STRIPE_PUBLISHABLE_KEY'] = settings.STRIPE_PUBLISHABLE_KEY
-        return context
-
-
-class CheckoutView(OrderCheckoutSessionMixin, View):
-
-    def get(self, request, *args, **kwargs):
-        session = self._generate_session(self, request, *args, **kwargs)
-        return JsonResponse({'id': session.id})
-
-    def post(self, request, *args, **kwargs):
-        session = self._generate_session(self, request, *args, **kwargs)
-        return redirect(session.url, code=303)
