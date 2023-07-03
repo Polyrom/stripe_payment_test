@@ -9,7 +9,7 @@
 + Bootstrap 4
 
 ### Click here to visit the page:
-### [Demo on Railway](https://stripepaymenttest-production.up.railway.app/)
+### [Demo on Railway](https://stripepaymenttest-production.up.railway.app/) (No more active due to lates changes in Railway pricing policy)
 
 ## Installation
 1. Clone the repository
